@@ -48,6 +48,7 @@ int main()
             // To athroisma ua einai apothikeymeno sto max1 kathws ua einai to mono stoixeio poy afaireitai
             cout << "The sum of the numbers using a MaxHeap is: " << max1 << endl;
             maxHeap.deactive(); // Apenergopoioyme ton swro megistwn
+
         }
         // Omoiws gia ton swro elaxistwn
         try
@@ -55,6 +56,7 @@ int main()
             minHeap.deleteMin(min1); // Afairoyme ta dyo mikrotera stoixeia toy swroy elaxistwn
             minHeap.deleteMin(min2);
             minHeap.insert(min1 + min2); // Eisagoyme to athroisma toys pali ston swro
+
         }
         catch (out_of_range)
         {

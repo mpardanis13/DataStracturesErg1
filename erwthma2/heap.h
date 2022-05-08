@@ -3,8 +3,8 @@ template <class T>
 class MaxHeap
 {
 public:
-    MaxHeap(int maxHeapSize);
-    ~MaxHeap() { delete[] heap; }
+    MaxHeap(int maxHeapSize=10);
+    ~MaxHeap() {delete[] heap; }
     int size() const { return currentSize; }
     void initialize(T a[], int size, int arraySize);
     MaxHeap<T> &insert(const T &x);
