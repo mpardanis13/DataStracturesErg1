@@ -3,16 +3,19 @@ template <class T>
 class MaxHeap
 {
 public:
-    MaxHeap(int maxHeapSize=10);
-    ~MaxHeap() {delete[] heap; }
+    MaxHeap(int maxHeapSize = 10);
+    ~MaxHeap() { delete[] heap; }
     int size() const { return currentSize; }
     void initialize(T a[], int size, int arraySize);
     MaxHeap<T> &insert(const T &x);
     MaxHeap<T> &deleteMax(T &x);
     void deactive() { heap = 0; }
+    void output() const;
+    void findSum();
 
 private:
-    int currentSize, maxSize;
+    int currentSize,
+        maxSize;
     T *heap; // pinakas twn stoixeiwn
 };
 
@@ -53,7 +56,7 @@ void MaxHeap<T>::initialize(T a[], int size, int arraySize)
                 break; // nai
             // oxi
             heap[c / 2] = heap[c]; // Metakinoyme to paidi epanw
-            c *= 2; // Katebainoyme ena epipedo
+            c *= 2;                // Katebainoyme ena epipedo
         }
         heap[c / 2] = y;
     }
@@ -115,6 +118,31 @@ MaxHeap<T> &MaxHeap<T>::deleteMax(T &x)
     return *this;
 }
 
+// Eyresh athroismatos swroy megistwn
+template <class T>
+void MaxHeap<T>::findSum()
+{
+    float max1, max2;  // Dhlwnoyme dyo metablhtes stis opoies ua apothikeboyme kathe fora ta
+                       // dyo megalytera stoixeia toy swroy megistwn
+    while (true)
+    {
+        try
+        {
+            deleteMax(max1); // Afairoyme ta dyo megalytera stoixeia toy swroy megistwn
+            deleteMax(max2);
+            insert(max1 + max2); // Eisagoyme to athroisma toys pali ston swro
+        }
+        catch (out_of_range)
+        { // Emfanizoyme apotelesmata otan afairethei to teleytaio stoixeio toy swroy
+          // to opoio einai kai to athroisma olwn twn stoixeiwn.
+            // To athroisma ua einai apothikeymeno sto max1 kathws ua einai to mono stoixeio poy afaireitai
+            cout << "The sum of the numbers using a MaxHeap is: " << max1 << endl;
+            deactive(); // Apenergopoioyme ton swro megistwn
+            break; // Termatizoyme th diadikasia
+        }
+    }
+}
+
 // Dhlwnoyme th klash toy swroy elaxistwn
 template <class T>
 class MinHeap
@@ -127,6 +155,8 @@ public:
     MinHeap<T> &insert(const T &x);
     MinHeap<T> &deleteMin(T &x);
     void deactive() { heap = 0; }
+    void output() const;
+    void findSum();
 
 private:
     int currentSize, maxSize;
@@ -232,4 +262,27 @@ MinHeap<T> &MinHeap<T>::deleteMin(T &x)
     }
     heap[i] = y;
     return *this;
+}
+
+// Eyresh athroismatos swroy elaxistwn
+template <class T>
+void MinHeap<T>::findSum()
+{
+    float min1, min2; // Dhlwnoyme dyo metablhtes stis opoies ua apothikeboyme kathe fora ta
+                      // dyo mikrotera stoixeia toy swroy elaxistwn
+    while (true)
+    {
+        try
+        {
+            deleteMin(min1); // Afairoyme ta dyo mikrotera stoixeia toy swroy elaxistwn
+            deleteMin(min2);
+            insert(min1 + min2); // Eisagoyme to athroisma toys pali ston swro
+        }
+        catch (out_of_range)
+        {
+            cout << "The sum of the numbers using a MinHeap is: " << min1 << endl;
+            deactive(); // Apenergopoioyme ton swro elaxistwn
+            break; // Termatizoyme th diadikasia
+        }
+    }
 }
