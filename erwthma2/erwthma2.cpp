@@ -1,7 +1,5 @@
-#include <algorithm>
 #include <functional>
 #include <iostream>
-#include <iterator>
 #include <random>
 
 using std::default_random_engine, std::chi_squared_distribution, std::bind, std::cout, std::cin, std::swap, std::endl, std::out_of_range, std::bad_alloc;
